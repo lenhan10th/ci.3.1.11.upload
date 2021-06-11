@@ -1,0 +1,10 @@
+RewriteEngine on
+RewriteRule ^(media)/([0-9]{1,4})x([0-9]{1,4})x([0-9]{1,4})-(.*).(jpg|jpeg|png|gif|bmp|JPG|JPEG|PNG|GIF|BMP) resizer/timthumb.php?src=$5.$6&w=$2&h=$3&zc=$4&q=100 [L]
+RewriteRule ^(media)/(.*)/([0-9]{1,4})x([0-9]{1,4})x([0-9]{1,4})-(.*).(jpg|jpeg|png|gif|bmp|JPG|JPEG|PNG|GIF|BMP) resizer/timthumb.php?src=uploads/$2/$6.$7&w=$3&h=$4&zc=$5&q=100 [L]
+RewriteRule ^(media)/(.*)/(.*) uploads/$2/$3 [L]
+RewriteRule ^(media)/(.*)/(.*)/(.*) uploads/$2/$3/$4 [L]
+RewriteRule ^(image)/(.*) ckeditor/kcfinder/upload/images/$2 [L]
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/?$1 [L,QSA]
